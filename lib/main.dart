@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/index_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: IndexScreen(),
+      home: AddCityScreen(),
     );
   }
 }
