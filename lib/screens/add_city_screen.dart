@@ -37,30 +37,18 @@ class _FormularState extends State<Formular> {
                   Text(
                     "Deine Städte -",
                     style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 73.0),
-                    child: Container(
-                      height: 1,
-                      color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.blue,
+                        fontSize: 18
                     ),
                   ),
 
                   Text(
                     "Füge eine Stadt hinzu",
                     style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 42.0),
-                    child: Container(
-                      height: 1,
-                      color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.blue,
+                        fontSize: 18,
                     ),
                   ),
 
