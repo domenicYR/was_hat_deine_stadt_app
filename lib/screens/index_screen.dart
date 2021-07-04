@@ -8,6 +8,7 @@ class IndexScreen extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.deepOrange,
             title: Text('Was hat deine Stadt'),
             centerTitle: true,
           ),
@@ -33,9 +34,11 @@ class IndexScreen extends StatelessWidget {
                       'Unsere Städte',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
-                          decorationColor: Colors.blue,
+                          decorationThickness: 2.85,
+                          decorationColor: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20
+                          fontSize: 20,
+                        color: Colors.deepOrange,
                       ),
                     ),
                     Row(
@@ -63,6 +66,9 @@ class IndexScreen extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: ElevatedButton(
                                     onPressed: () {},
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                                    ),
                                     child: Text('Zu den Städten'),
                                   ),
                                 ),
@@ -82,9 +88,11 @@ class IndexScreen extends StatelessWidget {
                       'Deine Städte',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
-                          decorationColor: Colors.blue,
+                          decorationThickness: 2.85,
+                          decorationColor: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20
+                          fontSize: 20,
+                        color: Colors.deepOrange,
                       ),
                     ),
                     Row(
@@ -117,6 +125,9 @@ class IndexScreen extends StatelessWidget {
                                         MaterialPageRoute(builder: (context) => AddCityScreen()),
                                       );
                                     },
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                                    ),
                                     child: Text('Zu den Städten'),
                                   ),
                                 ),

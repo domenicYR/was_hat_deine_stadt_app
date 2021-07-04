@@ -5,6 +5,7 @@ class AddCityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
         title: Text("Was hat deine Stadt"),
         centerTitle: true,
       ),
@@ -39,7 +40,9 @@ class _FormularState extends State<Formular> {
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.blue,
-                        fontSize: 18
+                        fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
                     ),
                   ),
 
@@ -49,7 +52,18 @@ class _FormularState extends State<Formular> {
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.blue,
                         fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
                     ),
+                  ),
+
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      child: Text('Füge eine neue Stadt hinzu, indem du zunächst den Stadtnamen einträgtst.', textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                          )
+                      )
                   ),
 
                   SizedBox(height: 25),
@@ -65,10 +79,13 @@ class _FormularState extends State<Formular> {
                   SizedBox(height: 25),
 
                   ElevatedButton(
-                    child: Text("Jetzt Stadt hinzufügen"),
+                    child: Text("Diese Stadt hinzufügen"),
                     onPressed: () {
                       //_handleSubmitButton();
                     },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                    ),
                   ),
                 ],
               ),
