@@ -30,16 +30,14 @@ class _FormularState extends State<Formular> {
       body: Container(
         child: Form(
           key: _formKey,
-          child: Scrollbar(
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
               padding: const EdgeInsets.all(50),
               child: Column(
                 children: [
                   Text(
                     "Deine Städte -",
                     style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.blue,
                         fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.deepOrange,
@@ -49,8 +47,6 @@ class _FormularState extends State<Formular> {
                   Text(
                     "Füge eine Stadt hinzu",
                     style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.blue,
                         fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.deepOrange,
@@ -58,15 +54,15 @@ class _FormularState extends State<Formular> {
                   ),
 
                   Padding(
-                      padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                      child: Text('Füge eine neue Stadt hinzu, indem du zunächst den Stadtnamen einträgtst.', textAlign: TextAlign.center,
+                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: Text('Füge eine neue Stadt hinzu, indem du zunächst den Stadtnamen einträgtst.',
                           style: TextStyle(
                             fontSize: 14,
                           )
                       )
                   ),
 
-                  SizedBox(height: 25),
+                  SizedBox(height: 12),
 
                   TextFormField(
                     decoration: InputDecoration(
@@ -76,10 +72,10 @@ class _FormularState extends State<Formular> {
                     keyboardType: TextInputType.text,
                   ),
 
-                  SizedBox(height: 25),
+                  SizedBox(height: 30),
 
                   ElevatedButton(
-                    child: Text("Diese Stadt hinzufügen"),
+                    child: Text("Stadt hinzufügen"),
                     onPressed: () {
                       //_handleSubmitButton();
                     },
@@ -87,6 +83,7 @@ class _FormularState extends State<Formular> {
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
                     ),
                   ),
+
                 ],
               ),
             ),

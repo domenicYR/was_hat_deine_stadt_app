@@ -5,6 +5,7 @@ class SehenswuerdigkeitenScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
         title: Text("Was hat deine Stadt"),
         centerTitle: true,
       ),
@@ -29,30 +30,40 @@ class _FormularState extends State<Formular> {
       body: Container(
         child: Form(
           key: _formKey,
-          child: Scrollbar(
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
               padding: const EdgeInsets.all(50),
               child: Column(
+
                 children: [
                   Text(
-                    "Deine Städte -",
+                    "Deine Stadt -",
                     style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.blue,
-                        fontSize: 18
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
                     ),
                   ),
 
                   Text(
                     "Sehenswürdigkeiten",
                     style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.blue,
                       fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
                     ),
                   ),
 
-                  SizedBox(height: 25),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: Text('Füge der Stadt deine Lieblingssehenswürdigkeiten hinzu.',
+                          style: TextStyle(
+                            fontSize: 14,
+                          )
+                      )
+                  ),
+
+                  SizedBox(height: 12),
 
                   TextFormField(
                     decoration: InputDecoration(
@@ -62,7 +73,7 @@ class _FormularState extends State<Formular> {
                     keyboardType: TextInputType.text,
                   ),
 
-                  SizedBox(height: 25),
+                  SizedBox(height: 20),
 
                   TextFormField(
                     decoration: InputDecoration(
@@ -72,7 +83,7 @@ class _FormularState extends State<Formular> {
                     keyboardType: TextInputType.text,
                   ),
 
-                  SizedBox(height: 25),
+                  SizedBox(height: 20),
 
                   TextFormField(
                     decoration: InputDecoration(
@@ -82,14 +93,18 @@ class _FormularState extends State<Formular> {
                     keyboardType: TextInputType.text,
                   ),
 
-                  SizedBox(height: 25),
+                  SizedBox(height: 30),
 
                   ElevatedButton(
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       //_handleSubmitButton();
                     },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                    ),
                   ),
+
                 ],
               ),
             ),
