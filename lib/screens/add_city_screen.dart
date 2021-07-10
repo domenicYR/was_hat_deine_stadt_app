@@ -1,6 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:was_hat_deine_stadt_app/database/city_database.dart';
 
 class AddCityScreen extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +28,8 @@ class Formular extends StatefulWidget {
 
 class _FormularState extends State<Formular> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  CityDatabase cdb = new CityDatabase();
+  Random rnd = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +81,11 @@ class _FormularState extends State<Formular> {
 
                   SizedBox(height: 30),
 
+                  //add Stadt
                   ElevatedButton(
                     child: Text("Stadt hinzufügen"),
                     onPressed: () {
+                      cdb.addStadt("Bielefeld ${rnd.nextInt(1000)}", "52100");
                       //_handleSubmitButton();
                     },
                     style: ButtonStyle(
@@ -84,6 +93,18 @@ class _FormularState extends State<Formular> {
                     ),
                   ),
 
+                  // openDB
+                  ElevatedButton(
+                    onPressed: () {
+                      cdb.openDB();
+                    },
+                    child: Container(
+                      width: 150,
+                      height: 35,
+                      color: Colors.green,
+                      child: Center(child: Text("Städte anzeigen")),
+                    ),
+                  ),
                 ],
               ),
             ),

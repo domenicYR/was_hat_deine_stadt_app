@@ -1,7 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:was_hat_deine_stadt_app/database/city_database.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 
+
 class IndexScreen extends StatelessWidget {
+
+  CityDatabase cdb = new CityDatabase();
+  Random rnd = Random();
   // StatefulWidget damit der Button funktioniert
   @override
   Widget build(BuildContext context) {
