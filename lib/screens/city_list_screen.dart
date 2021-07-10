@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/database/city_database.dart';
 
 class CityListScreen extends StatelessWidget {
-  late CityDatabase cdb;
+  CityDatabase cdb;
 
   CityListScreen(CityDatabase this.cdb);
 
