@@ -5,7 +5,7 @@ class CityDatabase {
 
   CityDatabase() {}
 
-
+test
   void deleteDB() async {
     var databasesPath = await getDatabasesPath();
     String path = databasesPath + "/" + 'demo.db';
