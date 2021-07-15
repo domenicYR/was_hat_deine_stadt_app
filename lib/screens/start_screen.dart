@@ -17,7 +17,6 @@ class StartScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -31,7 +30,6 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -45,7 +43,6 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -59,7 +56,6 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -76,9 +72,8 @@ class StartScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => CityListScreen(cdb))
-                  );
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CityListScreen()));
                 },
                 child: Container(
                   width: 150,
@@ -88,7 +83,6 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ));
   }

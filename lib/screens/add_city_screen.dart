@@ -1,15 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:was_hat_deine_stadt_app/database/city_database.dart';
+import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
-
-
-
-
 class AddCityScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +28,6 @@ class _FormularState extends State<Formular> {
 
   DatenFormular objektDatenFormular = DatenFormular();
 
-  CityDatabase cdb = new CityDatabase();
-  Random rnd = Random();
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +42,7 @@ class _FormularState extends State<Formular> {
                   Text(
                     "Deine Städte -",
                     style: TextStyle(
-                        fontSize: 18,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.deepOrange,
                     ),
@@ -62,7 +51,7 @@ class _FormularState extends State<Formular> {
                   Text(
                     "Füge eine Stadt hinzu",
                     style: TextStyle(
-                        fontSize: 18,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.deepOrange,
                     ),
@@ -70,12 +59,11 @@ class _FormularState extends State<Formular> {
 
                   Padding(
                       padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Text('Füge eine neue Stadt hinzu, indem du zunächst den Stadtnamen einträgtst.',
+                      child: Text(
+                          'Füge eine neue Stadt hinzu, indem du zunächst den Stadtnamen einträgtst.',
                           style: TextStyle(
                             fontSize: 14,
-                          )
-                      )
-                  ),
+                          ))),
 
                   SizedBox(height: 12),
 
@@ -92,102 +80,54 @@ class _FormularState extends State<Formular> {
 
                   SizedBox(height: 30),
 
-                  //add Stadt
                   ElevatedButton(
                     child: Text("Stadt hinzufügen"),
                     onPressed: () {
-                      cdb.openDB();
                       _handleSubmitButton();
-                      cdb.addStadt(objektDatenFormular.name, "52100");
+                      DataModel.cdb.addStadt(objektDatenFormular.name, "52100");
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.deepOrange),
                     ),
                   ),
 
+                  //*******************************************************************************************************
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
 
                   ElevatedButton(
                     onPressed: () {
-                      cdb.openDB();
+                      DataModel.cdb.alleStaedte();
                     },
                     child: Container(
                       width: 150,
                       height: 35,
-                      child: Center(child: Text("create DB")),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
-                    ),
-                  ),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      cdb.addStadt("Bielefeld ${rnd.nextInt(1000)}", "52100");
-                    },
-                    child: Container(
-                      width: 150,
-                      height: 35,
-                      child: Center(child: Text("neue Stadt")),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
-                    ),
-                  ),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      cdb.alleStaedte();
-                    },
-                    child: Container(
-                      width: 150,
-                      height: 35,
-
                       child: Center(child: Text("anzeigen")),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.deepOrange),
                     ),
                   ),
 
+                  SizedBox(height: 20),
+
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => CityListScreen(cdb))
-                      );
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CityListScreen()));
                     },
                     child: Container(
                       width: 150,
                       height: 35,
-                      color: Colors.green,
                       child: Center(child: Text("liste anzeigen")),
                     ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.deepOrange),
+                    ),
                   ),
-
-
-
-
-
-
                 ],
               ),
             ),
@@ -202,7 +142,6 @@ class _FormularState extends State<Formular> {
 
     form.save();
   }
-
 }
 
 class DatenFormular {

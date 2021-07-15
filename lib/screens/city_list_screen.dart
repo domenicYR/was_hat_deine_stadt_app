@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:was_hat_deine_stadt_app/database/city_database.dart';
+import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
 class CityListScreen extends StatelessWidget {
-  CityDatabase cdb;
-
-  CityListScreen(CityDatabase this.cdb);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +9,7 @@ class CityListScreen extends StatelessWidget {
         title: Text("Alle Städte"),
       ),
       body: FutureBuilder(
-        future: cdb.getStaedte(),
+        future: DataModel.cdb.getStaedte(),
         // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<List<Map>> snapshot) {
           // Fall 1: keine Daten geladen
