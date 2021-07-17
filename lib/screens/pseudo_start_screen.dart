@@ -25,7 +25,7 @@ class _PseudoStartScreenState extends State<PseudoStartScreen> {
   }
 
   startTime() async {
-    var duration = new Duration(seconds: 6);
+    var duration = new Duration(seconds: 20);
     return new Timer(duration, route);
   }
 
@@ -46,7 +46,7 @@ class _PseudoStartScreenState extends State<PseudoStartScreen> {
           children: <Widget> [
             Container(
               child: CircleAvatar(
-                child: Image.asset('assets/images/logo.png'),
+                child: Image.asset('assets/images/logoNeu.png'),
                 backgroundColor: Colors.white,
                 radius: 100,
               ),
