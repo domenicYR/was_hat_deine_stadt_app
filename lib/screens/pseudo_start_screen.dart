@@ -25,7 +25,7 @@ class _PseudoStartScreenState extends State<PseudoStartScreen> {
   }
 
   startTime() async {
-    var duration = new Duration(seconds: 20);
+    var duration = new Duration(seconds: 50);
     return new Timer(duration, route);
   }
 
@@ -46,17 +46,9 @@ class _PseudoStartScreenState extends State<PseudoStartScreen> {
           children: <Widget> [
             Container(
               child: CircleAvatar(
-                child: Image.asset('assets/images/logoNeu.png'),
+                child: Image.asset('assets/images/logoNeuNeu.png'),
                 backgroundColor: Colors.white,
                 radius: 100,
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 20.0)),
-            Text(
-              "Herzlich Willkommen",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 20.0)),
