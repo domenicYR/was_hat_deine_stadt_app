@@ -70,7 +70,6 @@ class IndexScreen extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      DataModel.cdb.openDB();
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -137,7 +136,6 @@ class IndexScreen extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      DataModel.cdb.openDB();
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

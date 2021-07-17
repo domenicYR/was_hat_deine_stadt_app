@@ -6,6 +6,7 @@ import 'package:was_hat_deine_stadt_app/screens/besonderheiten_stadt_screen.dart
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/einkaufslaeden_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/index_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/pseudo_start_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/restaurant_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/sehenswuerdigkeiten_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: IndexScreen(),
+      home: PseudoStartScreen(),
     );
   }
 }
