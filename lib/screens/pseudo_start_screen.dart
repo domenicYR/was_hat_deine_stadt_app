@@ -39,19 +39,24 @@ class _PseudoStartScreenState extends State<PseudoStartScreen> {
 
   initScreen(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.deepOrange,
       body: Center (
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
             Container(
-              child: Image.asset('assets/images/logo.png'),
+              child: CircleAvatar(
+                child: Image.asset('assets/images/logo.png'),
+                backgroundColor: Colors.white,
+                radius: 100,
+              ),
             ),
             Padding(padding: EdgeInsets.only(top: 20.0)),
             Text(
               "Herzlich Willkommen",
               style: TextStyle(
                 fontSize: 20.0,
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 20.0)),
