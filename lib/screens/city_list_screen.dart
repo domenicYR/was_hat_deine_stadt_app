@@ -6,7 +6,9 @@ class CityListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Alle Städte"),
+        backgroundColor: Colors.deepOrange,
+        title: Text("Was hat deine Stadt"),
+        centerTitle: true,
       ),
       body: FutureBuilder(
         future: DataModel.cdb.getStaedte(),
@@ -27,11 +29,14 @@ class CityListScreen extends StatelessWidget {
             return ListView.builder(
                 itemCount: result.length,
                 itemBuilder: (context, index) {
+
+
+
+
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 2.0),
                     child: (Container(
-                      height: 100,
-                      width: 200,
+                      height: 50,
                       color: Colors.blue,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,6 +48,10 @@ class CityListScreen extends StatelessWidget {
                       ),
                     )),
                   );
+
+
+
+
                 });
           }
         },
