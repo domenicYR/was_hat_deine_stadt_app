@@ -7,20 +7,20 @@ class ErlebenScreen extends StatelessWidget {
   // StatefulWidget damit der Button funktioniert
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: Text('Was hat deine Stadt'),
-          centerTitle: true,
+    return new WillPopScope(
+        onWillPop: () async => false,
+    child: new Scaffold(
+    appBar: new AppBar(
+    title: new Text("data"),
+    leading: new IconButton(
+    icon: new Icon(Icons.ac_unit),
+    onPressed: () => Navigator.of(context).pop(),
+
         ),
+    ),
         body: SingleChildScrollView(
           child: Column(children: [
-            Column(
-              children: <Widget>[
 
-              ],
-            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
