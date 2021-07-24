@@ -67,8 +67,6 @@ class _FormularState extends State<Formular> {
 
                   SizedBox(height: 12),
 
-                  //*******************************************************************************************************
-
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Stadtname',
@@ -92,25 +90,6 @@ class _FormularState extends State<Formular> {
                     ),
                   ),
 
-                  //*******************************************************************************************************
-
-                  SizedBox(height: 20),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      DataModel.cdb.alleStaedte();
-                    },
-                    child: Container(
-                      width: 150,
-                      height: 35,
-                      child: Center(child: Text("anzeigen")),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.deepOrange),
-                    ),
-                  ),
-
                   SizedBox(height: 20),
 
                   ElevatedButton(
@@ -121,7 +100,7 @@ class _FormularState extends State<Formular> {
                     child: Container(
                       width: 150,
                       height: 35,
-                      child: Center(child: Text("liste anzeigen")),
+                      child: Center(child: Text("Städte anzeigen")),
                     ),
                     style: ButtonStyle(
                       backgroundColor:

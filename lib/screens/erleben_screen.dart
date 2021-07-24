@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/attraktionen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/einkaufslaeden_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/restaurant_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/sehenswuerdigkeiten_screen.dart';
 
 class ErlebenScreen extends StatelessWidget {
+  List<Map> resultNeu;
+  int indexNeu;
+
+  ErlebenScreen(List<Map> result, int index) {
+    resultNeu = result;
+    indexNeu = index;
+    print(resultNeu[indexNeu]["name"]);
+  }
+
   // StatefulWidget damit der Button funktioniert
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(
-        onWillPop: () async => false,
-    child: new Scaffold(
-    appBar: new AppBar(
-    title: new Text("data"),
-    leading: new IconButton(
-    icon: new Icon(Icons.ac_unit),
-    onPressed: () => Navigator.of(context).pop(),
-
+      onWillPop: () async => false,
+      child: new Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.deepOrange,
+          title: Text(resultNeu[indexNeu]["name"]),
+          centerTitle: true,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
-    ),
         body: SingleChildScrollView(
           child: Column(children: [
 
@@ -65,7 +79,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CityListScreen()),
+                                                SehenswuerdigkeitenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -159,7 +173,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CityListScreen()),
+                                                RestaurantsScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -251,7 +265,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CityListScreen()),
+                                                AttraktionenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -343,7 +357,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddCityScreen()),
+                                                EinkaufslaedenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(

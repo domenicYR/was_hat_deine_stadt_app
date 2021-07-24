@@ -55,7 +55,7 @@ class CityListScreen extends StatelessWidget {
                             context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    ErlebenScreen()),
+                                    ErlebenScreen(result, index)),
                             );
                           },
                         style: ButtonStyle(
@@ -73,12 +73,6 @@ class CityListScreen extends StatelessWidget {
 //hallo
                         children: [
 
-                          Text("${result[index]["id"]}",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                          ),
 
                           Text(result[index]["name"],
                             style: TextStyle(
@@ -88,12 +82,7 @@ class CityListScreen extends StatelessWidget {
                             ),
                           ),
 
-                          Text(result[index]["plz"],
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                          ),
+
 
                         ],
                       ),
