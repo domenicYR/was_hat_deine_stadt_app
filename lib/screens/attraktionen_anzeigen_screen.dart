@@ -39,7 +39,87 @@ class AttraktionenAnzeigenScreen extends StatelessWidget {
                 itemCount: result.length,
                 itemBuilder: (context, index) {
 
+                return SingleChildScrollView(
+                  child: Column(children: [
 
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top:8.0),
+                              child: Text(
+                                result[index]["name"],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.deepOrange,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Image.asset(
+                                        'assets/images/frankfurt.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                        child: Text(result[index]["beschreibung"],
+                                            style: TextStyle(fontSize: 15)),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(9.0),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CityListScreen()),
+                                              );
+                                            },
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Colors.deepOrange),
+                                            ),
+                                            child: Text('Mehr lesen'),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  ]),
+                );
 
 
                   return Padding(
