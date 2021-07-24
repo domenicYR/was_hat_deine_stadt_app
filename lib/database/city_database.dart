@@ -37,6 +37,12 @@ class CityDatabase {
     print(count);
   }
 
+  void addAttraktionen(String name, String beschreibung, String bild) async {
+    int count = await db
+        .rawInsert('INSERT INTO attraktionen(name, beschreibung, bild) VALUES(?, ?, ?)', [name, beschreibung, bild]);
+    print(count);
+  }
+
   void alleStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
     print (list);
@@ -44,6 +50,11 @@ class CityDatabase {
 
   Future<List<Map>> getStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
+    return list;
+  }
+
+  Future<List<Map>> getAttraktionen() async {
+    List<Map> list = await db.rawQuery('SELECT * FROM attraktionen');
     return list;
   }
 }

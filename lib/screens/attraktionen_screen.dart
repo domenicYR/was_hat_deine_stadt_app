@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
 class AttraktionenScreen extends StatelessWidget {
   @override
@@ -23,6 +24,8 @@ class Formular extends StatefulWidget {
 
 class _FormularState extends State<Formular> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  DatenFormular objektDatenFormular = DatenFormular();
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +73,7 @@ class _FormularState extends State<Formular> {
                       labelText: 'Name',
                       border: OutlineInputBorder(),
                     ),
+                    onSaved: (value) => objektDatenFormular.name = value,
                     keyboardType: TextInputType.text,
                   ),
 
@@ -80,6 +84,7 @@ class _FormularState extends State<Formular> {
                       labelText: 'Beschreibung',
                       border: OutlineInputBorder(),
                     ),
+                    onSaved: (value) => objektDatenFormular.beschreibung = value,
                     keyboardType: TextInputType.text,
                   ),
 
@@ -90,6 +95,7 @@ class _FormularState extends State<Formular> {
                       labelText: 'Bild hinzufügen',
                       border: OutlineInputBorder(),
                     ),
+                    onSaved: (value) => objektDatenFormular.bild = value,
                     keyboardType: TextInputType.text,
                   ),
 
@@ -98,7 +104,8 @@ class _FormularState extends State<Formular> {
                   ElevatedButton(
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
-                      //_handleSubmitButton();
+                      _handleSubmitButton();
+                      DataModel.cdb.addAttraktionen(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -113,4 +120,16 @@ class _FormularState extends State<Formular> {
       ),
     );
   }
+
+  void _handleSubmitButton() {
+    final form = _formKey.currentState;
+
+    form.save();
+  }
+}
+
+class DatenFormular {
+  String name = "";
+  String beschreibung = "";
+  String bild = "";
 }

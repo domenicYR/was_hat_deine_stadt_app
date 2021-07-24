@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/attraktionen_anzeigen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/attraktionen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/einkaufslaeden_screen.dart';
@@ -288,7 +289,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CityListScreen()),
+                                                AttraktionenAnzeigenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
