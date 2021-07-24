@@ -3,7 +3,9 @@ import 'package:sqflite/sqflite.dart';
 class CityDatabase {
   Database db;
 
-  CityDatabase() {}
+  CityDatabase() {
+    
+  }
 
   void deleteDB() async {
     var databasesPath = await getDatabasesPath();

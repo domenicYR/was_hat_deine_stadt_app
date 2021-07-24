@@ -11,6 +11,8 @@ import 'package:was_hat_deine_stadt_app/screens/restaurant_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/sehenswuerdigkeiten_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
+import 'screens/city_list_screen.dart';
+
 void main() {
   DataModel dm = new DataModel();
   runApp(MyApp());
