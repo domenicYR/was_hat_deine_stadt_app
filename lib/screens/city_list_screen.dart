@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
+import 'package:was_hat_deine_stadt_app/screens/erleben_screen.dart';
 
-import 'erleben_screen.dart';
+
 
 class CityListScreen extends StatelessWidget {
   @override
@@ -80,21 +81,12 @@ class CityListScreen extends StatelessWidget {
                               color: Colors.deepOrange,
                             ),
                           ),
-
-
-
-
-
-                        ],
-                      ),
-                    )),
+                            ],
+                          ),
+                        )),
                       ),
                     ),
                   );
-
-
-
-
                 });
           }
         },

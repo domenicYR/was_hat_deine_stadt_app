@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_attraktionen_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_einkaufslaeden_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_restaurant_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_sehenswuerdigkeiten_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
 
 class ErlebenScreen extends StatelessWidget {
-  List<Map> resultNeu;
-  int indexNeu;
+  List<Map> result;
+  int index;
 
+  // Konstruktor
   ErlebenScreen(List<Map> result, int index) {
-    resultNeu = result;
-    indexNeu = index;
-    print(resultNeu[indexNeu]["name"]);
+    this.result = result;
+    this.index = index;
+    print(result[index]["id"]);
   }
 
-  // StatefulWidget damit der Button funktioniert
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(
-      onWillPop: () async => false,
-      child: new Scaffold(
-        appBar: new AppBar(
-          backgroundColor: Colors.deepOrange,
-          title: Text(resultNeu[indexNeu]["name"]),
-          centerTitle: true,
-          leading: new IconButton(
-            icon: new Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: [
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        title: Text(result[index]["name"]),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
 
+
+            // Sehenswürdigkeiten
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -65,11 +62,9 @@ class ErlebenScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
                         Expanded(
                           child: Column(
                             children: [
-
                               Padding(
                                 padding: const EdgeInsets.all(9.0),
                                 child: Align(
@@ -85,13 +80,13 @@ class ErlebenScreen extends StatelessWidget {
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.deepOrange),
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.upload_outlined,),
+                                      Icons.upload_outlined,
+                                    ),
                                   ),
-
                                 ),
                               ),
                               Padding(
@@ -113,9 +108,9 @@ class ErlebenScreen extends StatelessWidget {
                                           Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.remove_red_eye_sharp,),
+                                      Icons.remove_red_eye_sharp,
+                                    ),
                                   ),
-
                                 ),
                               ),
                             ],
@@ -127,9 +122,9 @@ class ErlebenScreen extends StatelessWidget {
                 ),
               ),
             ),
-            //Sehenswürdigkeit Ende
 
-            //Restaurant
+
+            // Restaurants
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -163,8 +158,8 @@ class ErlebenScreen extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-
-                              Padding(// Restaurant Button 1
+                              Padding(
+                                // Restaurant Button 1
                                 padding: const EdgeInsets.all(9.0),
                                 child: Align(
                                   alignment: Alignment.center,
@@ -183,11 +178,13 @@ class ErlebenScreen extends StatelessWidget {
                                           Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.upload_outlined,),
+                                      Icons.upload_outlined,
+                                    ),
                                   ),
                                 ),
                               ),
-                              Padding( // Restaurant Button 2
+                              Padding(
+                                // Restaurant Button 2
                                 padding: const EdgeInsets.all(0.0),
                                 child: Align(
                                   alignment: Alignment.center,
@@ -206,7 +203,8 @@ class ErlebenScreen extends StatelessWidget {
                                           Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.remove_red_eye_sharp,),
+                                      Icons.remove_red_eye_sharp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -219,9 +217,9 @@ class ErlebenScreen extends StatelessWidget {
                 ),
               ),
             ),
-            //Restaurant Ende
 
-            //Attraktionen
+
+            // Attraktionen
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -252,39 +250,11 @@ class ErlebenScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         Expanded(
                           child: Column(
                             children: [
-
-                              Padding(// Attraktionen Button 1
+                              Padding(
+                                // Attraktionen Button 1
                                 padding: const EdgeInsets.all(9.0),
                                 child: Align(
                                   alignment: Alignment.center,
@@ -294,7 +264,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddAttraktionenScreen(resultNeu, indexNeu)),
+                                                AddAttraktionenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -303,11 +273,13 @@ class ErlebenScreen extends StatelessWidget {
                                           Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.upload_outlined,),
+                                      Icons.upload_outlined,
+                                    ),
                                   ),
                                 ),
                               ),
-                              Padding( // Attraktionen Button 2
+                              Padding(
+                                // Attraktionen Button 2
                                 padding: const EdgeInsets.all(0.0),
                                 child: Align(
                                   alignment: Alignment.center,
@@ -326,7 +298,8 @@ class ErlebenScreen extends StatelessWidget {
                                           Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.remove_red_eye_sharp,),
+                                      Icons.remove_red_eye_sharp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -339,9 +312,9 @@ class ErlebenScreen extends StatelessWidget {
                 ),
               ),
             ),
-            //Attraktionen Ende
 
-            //Einkaufsläden
+
+            // Einkaufsläden
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -375,8 +348,8 @@ class ErlebenScreen extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-
-                              Padding( // Einkaufsladen Button 1
+                              Padding(
+                                // Einkaufsladen Button 1
                                 padding: const EdgeInsets.all(9.0),
                                 child: Align(
                                   alignment: Alignment.center,
@@ -391,16 +364,17 @@ class ErlebenScreen extends StatelessWidget {
                                     },
                                     style: ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.deepOrange),
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.upload_outlined,),
+                                      Icons.upload_outlined,
+                                    ),
                                   ),
                                 ),
                               ),
-
-                              Padding( // Einkaufsladen Button 2
+                              Padding(
+                                // Einkaufsladen Button 2
                                 padding: const EdgeInsets.all(0.0),
                                 child: Align(
                                   alignment: Alignment.center,
@@ -419,11 +393,11 @@ class ErlebenScreen extends StatelessWidget {
                                           Colors.deepOrange),
                                     ),
                                     child: Icon(
-                                      Icons.remove_red_eye_sharp,),
+                                      Icons.remove_red_eye_sharp,
+                                    ),
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -433,8 +407,10 @@ class ErlebenScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ]),
-        ),
+
+
+          ],
+        )
       ),
     );
   }
