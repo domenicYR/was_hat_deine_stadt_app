@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
-import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
 class AttraktionenAnzeigenScreen extends StatelessWidget {
@@ -22,15 +21,8 @@ class AttraktionenAnzeigenScreen extends StatelessWidget {
             return Container(color: Colors.red);
           }
           // Fall 2: Daten werden noch geladen
-
           if (!snapshot.hasData) {
-
-            return Container(
-
-                color: Colors.blue
-            );
-
-
+            return Container(color: Colors.blue);
           } else {
             // Fall 3: Daten wurden geladen und können angezeigt werden
             List<Map> result = snapshot.data as List<Map>;
@@ -38,144 +30,114 @@ class AttraktionenAnzeigenScreen extends StatelessWidget {
             return ListView.builder(
                 itemCount: result.length,
                 itemBuilder: (context, index) {
+                  return SingleChildScrollView(
+                    child: Column(children: [
 
-                return SingleChildScrollView(
-                  child: Column(children: [
 
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(top:8.0),
-                              child: Text(
-                                result[index]["name"],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.deepOrange,
+
+
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: Column(
+                            children: <Widget>[
+
+
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  result[index]["name"],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.deepOrange,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      child: Image.asset(
-                                        'assets/images/frankfurt.png',
+
+
+
+
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        child: Image.asset(
+                                          'assets/images/frankfurt.png',
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                                ],
+                              ),
 
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                        child: Text(result[index]["beschreibung"],
-                                            style: TextStyle(fontSize: 15)),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(9.0),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        CityListScreen()),
-                                              );
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.deepOrange),
+
+
+
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                          child: Text(
+                                              result[index]["beschreibung"],
+                                              style: TextStyle(fontSize: 15)),
+                                        ),
+
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 12.0, bottom: 4.0),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CityListScreen()),
+                                                );
+                                              },
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Colors.deepOrange),
+                                              ),
+                                              child: Text('Mehr lesen'),
                                             ),
-                                            child: Text('Mehr lesen'),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                  ]),
-                );
-
-
-                  return Padding(
-
-                    padding: const EdgeInsets.symmetric(vertical: 2.0),
-                    child: Card(
-
-                      // Button
-                      child: ElevatedButton(
-
-
-                        child: (Container(
-                          height: 80,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center, // Text Center
-                            mainAxisAlignment: MainAxisAlignment.center,
-//hallo
-                            children: [
-
-
-                              Text(result[index]["name"],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.deepOrange,
-                                ),
+                                ],
                               ),
-
-                              Text(result[index]["beschreibung"],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.deepOrange,
-                                ),
-                              ),
-
-                              Text(result[index]["bild"],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.deepOrange,
-                                ),
-                              ),
-
-
-
                             ],
                           ),
-                        )),
+                        ),
                       ),
-                    ),
+
+
+
+
+
+
+
+
+
+                    ]),
                   );
-
-
-
-
                 });
           }
         },
