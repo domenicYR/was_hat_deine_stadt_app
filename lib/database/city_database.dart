@@ -3,9 +3,7 @@ import 'package:sqflite/sqflite.dart';
 class CityDatabase {
   Database db;
 
-  CityDatabase() {
-    
-  }
+  CityDatabase() {}
 
   void deleteDB() async {
     var databasesPath = await getDatabasesPath();
@@ -19,16 +17,15 @@ class CityDatabase {
 
     print("db wird eingerichtet");
     print(path);
-    //db = await openDatabase(path);
 
     db = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
-          // When creating the db, create the table
-          await db.execute(
-              'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT, plz TEXT)');
-          await db.execute(
-              'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT)');
-        });
+      // When creating the db, create the table
+      await db.execute(
+          'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT, plz TEXT)');
+      await db.execute(
+          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT)');
+    });
   }
 
   void addStadt(String name, String plz) async {
@@ -38,14 +35,15 @@ class CityDatabase {
   }
 
   void addAttraktionen(String name, String beschreibung, String bild) async {
-    int count = await db
-        .rawInsert('INSERT INTO attraktionen(name, beschreibung, bild) VALUES(?, ?, ?)', [name, beschreibung, bild]);
+    int count = await db.rawInsert(
+        'INSERT INTO attraktionen(name, beschreibung, bild) VALUES(?, ?, ?)',
+        [name, beschreibung, bild]);
     print(count);
   }
 
   void alleStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
-    print (list);
+    print(list);
   }
 
   Future<List<Map>> getStaedte() async {
@@ -58,4 +56,3 @@ class CityDatabase {
     return list;
   }
 }
-//HeyHo

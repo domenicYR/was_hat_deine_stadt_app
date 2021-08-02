@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
 class IndexScreen extends StatelessWidget {
-  // StatefulWidget damit der Button funktioniert
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +14,9 @@ class IndexScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
+
+
+            // Teil 1: Bild oben
             Column(
               children: <Widget>[
                 Padding(
@@ -29,6 +30,9 @@ class IndexScreen extends StatelessWidget {
                 ),
               ],
             ),
+
+
+            // Teil 2: Unsere Städte
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -95,6 +99,9 @@ class IndexScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+
+            // Teil 3: Deine Städte
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(

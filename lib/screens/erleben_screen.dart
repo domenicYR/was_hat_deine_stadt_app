@@ -31,7 +31,7 @@ class ErlebenScreen extends StatelessWidget {
           children: [
 
 
-            // Sehenswürdigkeiten
+            // Teil 1: Sehenswürdigkeiten
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -124,7 +124,7 @@ class ErlebenScreen extends StatelessWidget {
             ),
 
 
-            // Restaurants
+            // Teil 2: Restaurants
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -219,7 +219,7 @@ class ErlebenScreen extends StatelessWidget {
             ),
 
 
-            // Attraktionen
+            // Teil 3: Attraktionen
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -314,7 +314,7 @@ class ErlebenScreen extends StatelessWidget {
             ),
 
 
-            // Einkaufsläden
+            // Teil 4: Einkaufsläden
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(

@@ -3,7 +3,6 @@ import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
 class AddAttraktionenScreen extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

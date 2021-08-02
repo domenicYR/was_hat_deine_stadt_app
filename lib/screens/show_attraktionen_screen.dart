@@ -34,8 +34,7 @@ class ShowAttraktionenScreen extends StatelessWidget {
                     child: Column(children: [
 
 
-
-
+                      // body
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
@@ -43,6 +42,7 @@ class ShowAttraktionenScreen extends StatelessWidget {
                             children: <Widget>[
 
 
+                              // Teil 1: Name
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: Text(
@@ -56,8 +56,7 @@ class ShowAttraktionenScreen extends StatelessWidget {
                               ),
 
 
-
-
+                              // Teil 2: Bild
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -78,8 +77,7 @@ class ShowAttraktionenScreen extends StatelessWidget {
                               ),
 
 
-
-
+                              // Teil 3: Beschreibung
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -88,15 +86,18 @@ class ShowAttraktionenScreen extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10.0),
                                           child: Text(
                                               result[index]["beschreibung"],
                                               style: TextStyle(fontSize: 15)),
                                         ),
 
 
+                                        // Teil 4: Button
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 12.0, bottom: 4.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 12.0, bottom: 4.0),
                                           child: Align(
                                             alignment: Alignment.center,
                                             child: ElevatedButton(
@@ -118,6 +119,8 @@ class ShowAttraktionenScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
+
+
                                       ],
                                     ),
                                   ),
@@ -127,15 +130,6 @@ class ShowAttraktionenScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
-
-
-
-
-
-
-
-
                     ]),
                   );
                 });
