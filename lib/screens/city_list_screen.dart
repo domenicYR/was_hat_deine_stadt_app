@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
 import 'erleben_screen.dart';
-import 'index_screen.dart';
 
 class CityListScreen extends StatelessWidget {
   @override
@@ -70,7 +69,7 @@ class CityListScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center, // Text Center
                         mainAxisAlignment: MainAxisAlignment.center,
-//hallo
+
                         children: [
 
 
@@ -81,6 +80,8 @@ class CityListScreen extends StatelessWidget {
                               color: Colors.deepOrange,
                             ),
                           ),
+
+
 
 
 

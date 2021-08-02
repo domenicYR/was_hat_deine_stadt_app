@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
-class AttraktionenAnzeigenScreen extends StatelessWidget {
+class ShowAttraktionenScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/attraktionen_anzeigen_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/attraktionen_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_attraktionen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/einkaufslaeden_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/restaurant_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/sehenswuerdigkeiten_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_einkaufslaeden_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_restaurant_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_sehenswuerdigkeiten_screen.dart';
 
 class ErlebenScreen extends StatelessWidget {
   List<Map> resultNeu;
@@ -80,7 +80,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                SehenswuerdigkeitenScreen()),
+                                                AddSehenswuerdigkeitenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -174,7 +174,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                RestaurantsScreen()),
+                                                AddRestaurantsScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -252,6 +252,34 @@ class ErlebenScreen extends StatelessWidget {
                             ),
                           ),
                         ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         Expanded(
                           child: Column(
                             children: [
@@ -266,7 +294,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AttraktionenScreen()),
+                                                AddAttraktionenScreen(resultNeu, indexNeu)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -289,7 +317,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AttraktionenAnzeigenScreen()),
+                                                ShowAttraktionenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -358,7 +386,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                EinkaufslaedenScreen()),
+                                                AddEinkaufslaedenScreen()),
                                       );
                                     },
                                     style: ButtonStyle(

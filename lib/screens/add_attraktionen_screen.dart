@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
-class AttraktionenScreen extends StatelessWidget {
+class AddAttraktionenScreen extends StatelessWidget {
+  List<Map> resultNeu;
+  int indexNeu;
+
+  AddAttraktionenScreen(List<Map> resultNeu, int indexNeu) {
+    resultNeu = resultNeu;
+    indexNeu = indexNeu;
+    print(resultNeu[indexNeu]["name"]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

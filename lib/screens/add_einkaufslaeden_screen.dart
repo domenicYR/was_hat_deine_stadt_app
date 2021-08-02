@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SehenswuerdigkeitenScreen extends StatelessWidget {
+class AddEinkaufslaedenScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +46,7 @@ class _FormularState extends State<Formular> {
                   ),
 
                   Text(
-                    "Sehenswürdigkeiten",
+                    "Einkaufsläden",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -56,7 +56,7 @@ class _FormularState extends State<Formular> {
 
                   Padding(
                       padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Text('Füge der Stadt deine Lieblingssehenswürdigkeiten hinzu.',
+                      child: Text('Füge der Stadt deine Lieblingseinkaufsläden hinzu.',
                           style: TextStyle(
                             fontSize: 14,
                           )
