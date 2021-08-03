@@ -6,6 +6,7 @@ import 'package:was_hat_deine_stadt_app/screens/add_restaurant_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_sehenswuerdigkeiten_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/show_sehenswuerdigkeiten_screen.dart';
 
 class ErlebenScreen extends StatelessWidget {
   List<Map> result;
@@ -75,7 +76,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddSehenswuerdigkeitenScreen()),
+                                                AddSehenswuerdigkeitenScreen(result, index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -99,7 +100,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CityListScreen()),
+                                                ShowSehenswuerdigkeitenScreen(result, index)),
                                       );
                                     },
                                     style: ButtonStyle(

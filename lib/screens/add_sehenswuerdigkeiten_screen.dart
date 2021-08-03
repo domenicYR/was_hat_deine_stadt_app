@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:was_hat_deine_stadt_app/model/data_model.dart';
+
+List<Map> resultGlobal;
+int indexGlobal;
 
 class AddSehenswuerdigkeitenScreen extends StatelessWidget {
+
+  // Konstruktor
+  AddSehenswuerdigkeitenScreen(List<Map> result, int index) {
+    resultGlobal = result;
+    indexGlobal = index;
+    print(resultGlobal[indexGlobal]["id"]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +36,8 @@ class Formular extends StatefulWidget {
 class _FormularState extends State<Formular> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  DatenFormular objektDatenFormular = DatenFormular();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +60,7 @@ class _FormularState extends State<Formular> {
                   ),
 
                   Text(
-                    "Sehenswürdigkeiten",
+                    "Attraktionen",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -56,7 +70,7 @@ class _FormularState extends State<Formular> {
 
                   Padding(
                       padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Text('Füge der Stadt deine Lieblingssehenswürdigkeiten hinzu.',
+                      child: Text('Füge der Stadt deine Lieblingsattraktionen hinzu.',
                           style: TextStyle(
                             fontSize: 14,
                           )
@@ -70,6 +84,7 @@ class _FormularState extends State<Formular> {
                       labelText: 'Name',
                       border: OutlineInputBorder(),
                     ),
+                    onSaved: (value) => objektDatenFormular.name = value,
                     keyboardType: TextInputType.text,
                   ),
 
@@ -80,6 +95,7 @@ class _FormularState extends State<Formular> {
                       labelText: 'Beschreibung',
                       border: OutlineInputBorder(),
                     ),
+                    onSaved: (value) => objektDatenFormular.beschreibung = value,
                     keyboardType: TextInputType.text,
                   ),
 
@@ -90,6 +106,7 @@ class _FormularState extends State<Formular> {
                       labelText: 'Bild hinzufügen',
                       border: OutlineInputBorder(),
                     ),
+                    onSaved: (value) => objektDatenFormular.bild = value,
                     keyboardType: TextInputType.text,
                   ),
 
@@ -98,7 +115,8 @@ class _FormularState extends State<Formular> {
                   ElevatedButton(
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
-                      //_handleSubmitButton();
+                      _handleSubmitButton();
+                      DataModel.cdb.addSehenswuerdigkeiten(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -113,4 +131,16 @@ class _FormularState extends State<Formular> {
       ),
     );
   }
+
+  void _handleSubmitButton() {
+    final form = _formKey.currentState;
+
+    form.save();
+  }
+}
+
+class DatenFormular {
+  String name = "";
+  String beschreibung = "";
+  String bild = "";
 }

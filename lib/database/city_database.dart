@@ -25,6 +25,8 @@ class CityDatabase {
           'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT, plz TEXT)');
       await db.execute(
           'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+      await db.execute(
+          'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
     });
   }
 
@@ -41,6 +43,13 @@ class CityDatabase {
     print(count);
   }
 
+  void addSehenswuerdigkeiten(String name, String beschreibung, String bild, int idStadt) async {
+    int count = await db.rawInsert(
+        'INSERT INTO sehenswuerdigkeiten(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, bild, idStadt]);
+    print(count);
+  }
+
   void alleStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
     print(list);
@@ -53,6 +62,11 @@ class CityDatabase {
 
   Future<List<Map>> getAttraktionen(int idStadtAktuell) async {
     List<Map> list = await db.rawQuery('SELECT * FROM attraktionen WHERE idStadt = $idStadtAktuell');
+    return list;
+  }
+
+  Future<List<Map>> getSehenswuerdigkeiten(int idStadtAktuell) async {
+    List<Map> list = await db.rawQuery('SELECT * FROM sehenswuerdigkeiten');
     return list;
   }
 }
