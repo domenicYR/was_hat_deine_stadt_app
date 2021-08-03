@@ -27,6 +27,10 @@ class CityDatabase {
           'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
           'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+      await db.execute(
+          'CREATE TABLE restaurants (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+      await db.execute(
+          'CREATE TABLE einkaufslaeden (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
     });
   }
 
@@ -50,6 +54,20 @@ class CityDatabase {
     print(count);
   }
 
+  void addRestaurants(String name, String beschreibung, String bild, int idStadt) async {
+    int count = await db.rawInsert(
+        'INSERT INTO restaurants(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, bild, idStadt]);
+    print(count);
+  }
+
+  void addEinkaufslaeden(String name, String beschreibung, String bild, int idStadt) async {
+    int count = await db.rawInsert(
+        'INSERT INTO einkaufslaeden(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, bild, idStadt]);
+    print(count);
+  }
+
   void alleStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
     print(list);
@@ -66,7 +84,17 @@ class CityDatabase {
   }
 
   Future<List<Map>> getSehenswuerdigkeiten(int idStadtAktuell) async {
-    List<Map> list = await db.rawQuery('SELECT * FROM sehenswuerdigkeiten');
+    List<Map> list = await db.rawQuery('SELECT * FROM sehenswuerdigkeiten WHERE idStadt = $idStadtAktuell');
+    return list;
+  }
+
+  Future<List<Map>> getRestaurants(int idStadtAktuell) async {
+    List<Map> list = await db.rawQuery('SELECT * FROM restaurants WHERE idStadt = $idStadtAktuell');
+    return list;
+  }
+
+  Future<List<Map>> getEinkaufslaeden(int idStadtAktuell) async {
+    List<Map> list = await db.rawQuery('SELECT * FROM einkaufslaeden WHERE idStadt = $idStadtAktuell');
     return list;
   }
 }
