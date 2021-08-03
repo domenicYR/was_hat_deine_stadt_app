@@ -116,7 +116,11 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addAttraktionen(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
+                      DataModel.cdb.addAttraktionen(objektDatenFormular.name,
+                          objektDatenFormular.beschreibung,
+                          objektDatenFormular.bild,
+                          resultGlobal[indexGlobal]["id"]);
+                      _showAlertDialog();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -138,6 +142,17 @@ class _FormularState extends State<Formular> {
     form.save();
 
     _formKey.currentState.reset();
+  }
+
+  void _showAlertDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Attraktion wurde hinzugefügt!'),
+        );
+      },
+    );
   }
 }
 

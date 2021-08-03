@@ -117,6 +117,7 @@ class _FormularState extends State<Formular> {
                     onPressed: () {
                       _handleSubmitButton();
                       DataModel.cdb.addEinkaufslaeden(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
+                      _showAlertDialog();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -138,6 +139,17 @@ class _FormularState extends State<Formular> {
     form.save();
 
     _formKey.currentState.reset();
+  }
+
+  void _showAlertDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Einkaufsladen wurde hinzugefügt!'),
+        );
+      },
+    );
   }
 }
 

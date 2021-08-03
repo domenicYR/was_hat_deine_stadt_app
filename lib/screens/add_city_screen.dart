@@ -84,11 +84,6 @@ class _FormularState extends State<Formular> {
                       _handleSubmitButton();
                       DataModel.cdb.addStadt(objektDatenFormular.name, "52100");
                       _showAlertDialog();
-
-
-
-
-
                     },
                     style: ButtonStyle(
                       backgroundColor:
