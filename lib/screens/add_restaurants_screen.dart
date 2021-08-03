@@ -136,6 +136,8 @@ class _FormularState extends State<Formular> {
     final form = _formKey.currentState;
 
     form.save();
+
+    _formKey.currentState.reset();
   }
 }
 

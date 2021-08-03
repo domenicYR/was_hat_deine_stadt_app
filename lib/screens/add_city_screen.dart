@@ -83,6 +83,12 @@ class _FormularState extends State<Formular> {
                     onPressed: () {
                       _handleSubmitButton();
                       DataModel.cdb.addStadt(objektDatenFormular.name, "52100");
+                      _showAlertDialog();
+
+
+
+
+
                     },
                     style: ButtonStyle(
                       backgroundColor:
@@ -120,6 +126,19 @@ class _FormularState extends State<Formular> {
     final form = _formKey.currentState;
 
     form.save();
+
+    _formKey.currentState.reset();
+  }
+
+  void _showAlertDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Stadt wurde hinzugefügt!'),
+        );
+      },
+    );
   }
 }
 
