@@ -15,7 +15,7 @@ class ErlebenScreen extends StatelessWidget {
   ErlebenScreen(List<Map> result, int index) {
     this.result = result;
     this.index = index;
-    print(result[index]["id"]);
+    //print(result[index]["id"]);
   }
 
   @override
@@ -264,7 +264,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddAttraktionenScreen()),
+                                                AddAttraktionenScreen(result, index)),
                                       );
                                     },
                                     style: ButtonStyle(

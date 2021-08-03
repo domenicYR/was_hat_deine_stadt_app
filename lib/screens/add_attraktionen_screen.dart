@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
+List<Map> resultGlobal;
+int indexGlobal;
+
 class AddAttraktionenScreen extends StatelessWidget {
+
+  // Konstruktor
+  AddAttraktionenScreen(List<Map> result, int index) {
+    resultGlobal = result;
+    indexGlobal = index;
+    print(resultGlobal[indexGlobal]["id"]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +116,7 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addAttraktionen(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild);
+                      DataModel.cdb.addAttraktionen(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
