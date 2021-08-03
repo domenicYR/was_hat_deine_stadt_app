@@ -289,7 +289,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ShowAttraktionenScreen()),
+                                                ShowAttraktionenScreen(result, index)),
                                       );
                                     },
                                     style: ButtonStyle(

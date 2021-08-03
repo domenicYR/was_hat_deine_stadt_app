@@ -3,6 +3,16 @@ import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
 class ShowAttraktionenScreen extends StatelessWidget {
+  List<Map> result;
+  int index;
+
+  // Konstruktor
+  ShowAttraktionenScreen(List<Map> result, int index) {
+    this.result = result;
+    this.index = index;
+    print(result[index]["id"]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +22,7 @@ class ShowAttraktionenScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: DataModel.cdb.getAttraktionen(),
+        future: DataModel.cdb.getAttraktionen(result[index]["id"]),
         // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<List<Map>> snapshot) {
           // Fall 1: keine Daten geladen

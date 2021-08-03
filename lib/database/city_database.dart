@@ -51,8 +51,8 @@ class CityDatabase {
     return list;
   }
 
-  Future<List<Map>> getAttraktionen() async {
-    List<Map> list = await db.rawQuery('SELECT * FROM attraktionen');
+  Future<List<Map>> getAttraktionen(int idStadtAktuell) async {
+    List<Map> list = await db.rawQuery('SELECT * FROM attraktionen WHERE idStadt = $idStadtAktuell');
     return list;
   }
 }
