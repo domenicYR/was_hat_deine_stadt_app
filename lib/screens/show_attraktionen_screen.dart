@@ -10,7 +10,7 @@ class ShowAttraktionenScreen extends StatelessWidget {
   ShowAttraktionenScreen(List<Map> result, int index) {
     this.result = result;
     this.index = index;
-    print(result[index]["id"]);
+    print(result[index]["name"]);
   }
 
   @override

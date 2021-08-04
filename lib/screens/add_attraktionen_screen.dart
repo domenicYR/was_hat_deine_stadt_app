@@ -103,6 +103,17 @@ class _FormularState extends State<Formular> {
 
                   TextFormField(
                     decoration: InputDecoration(
+                      labelText: 'Link zur Attraktion',
+                      border: OutlineInputBorder(),
+                    ),
+                    onSaved: (value) => objektDatenFormular.link = value,
+                    keyboardType: TextInputType.url,
+                  ),
+
+                  SizedBox(height: 20),
+
+                  TextFormField(
+                    decoration: InputDecoration(
                       labelText: 'Bild hinzufügen',
                       border: OutlineInputBorder(),
                     ),
@@ -116,8 +127,10 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addAttraktionen(objektDatenFormular.name,
+                      DataModel.cdb.addAttraktionen(
+                          objektDatenFormular.name,
                           objektDatenFormular.beschreibung,
+                          objektDatenFormular.link,
                           objektDatenFormular.bild,
                           resultGlobal[indexGlobal]["id"]);
                       _showAlertDialog();
@@ -160,4 +173,5 @@ class DatenFormular {
   String name = "";
   String beschreibung = "";
   String bild = "";
+  String link = "";
 }

@@ -24,7 +24,7 @@ class CityDatabase {
       await db.execute(
           'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT, plz TEXT)');
       await db.execute(
-          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
           'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
@@ -40,10 +40,10 @@ class CityDatabase {
     print(count);
   }
 
-  void addAttraktionen(String name, String beschreibung, String bild, int idStadt) async {
+  void addAttraktionen(String name, String beschreibung, String link, String bild, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO attraktionen(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
-        [name, beschreibung, bild, idStadt]);
+        'INSERT INTO attraktionen(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
+        [name, beschreibung, link, bild, idStadt]);
     print(count);
   }
 

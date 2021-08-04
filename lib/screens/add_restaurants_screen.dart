@@ -60,7 +60,7 @@ class _FormularState extends State<Formular> {
                   ),
 
                   Text(
-                    "Attraktionen",
+                    "Restaurants",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _FormularState extends State<Formular> {
 
                   Padding(
                       padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Text('Füge der Stadt deine Lieblingsattraktionen hinzu.',
+                      child: Text('Füge der Stadt deine Lieblingsrestaurants hinzu.',
                           style: TextStyle(
                             fontSize: 14,
                           )
@@ -97,6 +97,16 @@ class _FormularState extends State<Formular> {
                     ),
                     onSaved: (value) => objektDatenFormular.beschreibung = value,
                     keyboardType: TextInputType.text,
+                  ),
+
+                  SizedBox(height: 20),
+
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Link zum Restaurant',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.url,
                   ),
 
                   SizedBox(height: 20),
