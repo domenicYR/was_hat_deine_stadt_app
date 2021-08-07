@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
-import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
 class ShowEinkaufslaedenScreen extends StatelessWidget {
   List<Map> result;
