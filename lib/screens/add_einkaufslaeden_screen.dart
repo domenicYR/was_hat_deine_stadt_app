@@ -106,7 +106,8 @@ class _FormularState extends State<Formular> {
                       labelText: 'Link zum Einkaufsladen',
                       border: OutlineInputBorder(),
                     ),
-                    keyboardType: TextInputType.url,
+                    onSaved: (value) => objektDatenFormular.link = value,
+                    keyboardType: TextInputType.text,
                   ),
 
                   SizedBox(height: 20),
@@ -126,7 +127,7 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addEinkaufslaeden(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
+                      DataModel.cdb.addEinkaufslaeden(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.link, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
                       _showAlertDialog();
                     },
                     style: ButtonStyle(
@@ -166,5 +167,6 @@ class _FormularState extends State<Formular> {
 class DatenFormular {
   String name = "";
   String beschreibung = "";
+  String link = "";
   String bild = "";
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
@@ -112,12 +113,7 @@ class ShowEinkaufslaedenScreen extends StatelessWidget {
                                             alignment: Alignment.center,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          CityListScreen()),
-                                                );
+                                                _launchURL(result[index]["link"]);
                                               },
                                               style: ButtonStyle(
                                                 backgroundColor:
@@ -125,7 +121,7 @@ class ShowEinkaufslaedenScreen extends StatelessWidget {
                                                     Color>(
                                                     Colors.deepOrange),
                                               ),
-                                              child: Text('Mehr lesen'),
+                                              child: Text('Erfahre mehr'),
                                             ),
                                           ),
                                         ),
@@ -147,5 +143,13 @@ class ShowEinkaufslaedenScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  _launchURL(String link) async {
+    if (await canLaunch(link)) {
+      await launch(link);
+    } else {
+      throw 'Could not launch $link';
+    }
   }
 }

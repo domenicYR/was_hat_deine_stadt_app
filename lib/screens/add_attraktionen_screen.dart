@@ -107,7 +107,7 @@ class _FormularState extends State<Formular> {
                       border: OutlineInputBorder(),
                     ),
                     onSaved: (value) => objektDatenFormular.link = value,
-                    keyboardType: TextInputType.url,
+                    keyboardType: TextInputType.text,
                   ),
 
                   SizedBox(height: 20),
@@ -172,6 +172,6 @@ class _FormularState extends State<Formular> {
 class DatenFormular {
   String name = "";
   String beschreibung = "";
-  String bild = "";
   String link = "";
+  String bild = "";
 }
