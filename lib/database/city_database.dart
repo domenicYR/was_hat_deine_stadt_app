@@ -5,12 +5,14 @@ class CityDatabase {
 
   CityDatabase() {}
 
+  // Datenbank löschen
   void deleteDB() async {
     var databasesPath = await getDatabasesPath();
     String path = databasesPath + "/" + 'demo.db';
     await deleteDatabase(path);
   }
 
+  // Datenbank und Tabellen erstellen
   Future<void> openDB() async {
     var databasesPath = await getDatabasesPath();
     String path = databasesPath + "/" + 'demo.db';
@@ -34,6 +36,7 @@ class CityDatabase {
     });
   }
 
+  // Methoden, beginnend mit "add. . .", fügen Einträge in die entsprechende Tabelle ein
   void addStadt(String name, String plz) async {
     int count = await db
         .rawInsert('INSERT INTO stadt(name, plz) VALUES(?, ?)', [name, plz]);
@@ -73,6 +76,7 @@ class CityDatabase {
     print(list);
   }
 
+  // Methoden, beginnend mit "get. . .", um die Einträge in der entsprechenden Tabelle anzuzeigen
   Future<List<Map>> getStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
     return list;
