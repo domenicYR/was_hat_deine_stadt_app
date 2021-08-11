@@ -60,7 +60,7 @@ class ErlebenScreen extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10.0),
                               child: Image.asset(
-                                'assets/images/frankfurt.png',
+                                'assets/images/sehenswuerdigkeit.png',
                               ),
                             ),
                           ),
@@ -153,7 +153,7 @@ class ErlebenScreen extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10.0),
                               child: Image.asset(
-                                'assets/images/frankfurt.png',
+                                'assets/images/restaurant.png',
                               ),
                             ),
                           ),
@@ -248,7 +248,7 @@ class ErlebenScreen extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10.0),
                               child: Image.asset(
-                                'assets/images/frankfurt.png',
+                                'assets/images/attraktionen.png',
                               ),
                             ),
                           ),
