@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
-import 'package:was_hat_deine_stadt_app/screens/index_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
 class PseudoStartScreen extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _PseudoStartScreenState extends State<PseudoStartScreen> {
   route() {
     DataModel.cdb.openDB();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => IndexScreen()));
+        context, MaterialPageRoute(builder: (context) => StartScreen()));
   }
 
   initScreen(BuildContext context) {

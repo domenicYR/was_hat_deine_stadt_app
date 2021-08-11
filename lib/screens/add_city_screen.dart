@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
-import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
 class AddCityScreen extends StatelessWidget {
   @override
@@ -91,23 +90,6 @@ class _FormularState extends State<Formular> {
                     ),
                   ),
 
-                  SizedBox(height: 20),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => CityListScreen()));
-                    },
-                    child: Container(
-                      width: 150,
-                      height: 35,
-                      child: Center(child: Text("Städte anzeigen")),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.deepOrange),
-                    ),
-                  ),
                 ],
               ),
             ),

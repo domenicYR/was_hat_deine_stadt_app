@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 
-class IndexScreen extends StatelessWidget {
+class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

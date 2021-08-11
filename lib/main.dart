@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
+import 'package:was_hat_deine_stadt_app/screens/home_page_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/pseudo_start_screen.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PseudoStartScreen(),
+      home: HomePage(),
     );
   }
 }
