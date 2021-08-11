@@ -5,12 +5,14 @@ class CityDatabase {
 
   CityDatabase() {}
 
+  // Datenbank löschen
   void deleteDB() async {
     var databasesPath = await getDatabasesPath();
     String path = databasesPath + "/" + 'demo.db';
     await deleteDatabase(path);
   }
 
+  // Datenbank und Tabellen erstellen
   Future<void> openDB() async {
     var databasesPath = await getDatabasesPath();
     String path = databasesPath + "/" + 'demo.db';
@@ -24,47 +26,48 @@ class CityDatabase {
       await db.execute(
           'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT, plz TEXT)');
       await db.execute(
-          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
-          'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
-          'CREATE TABLE restaurants (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE restaurants (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
-          'CREATE TABLE einkaufslaeden (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE einkaufslaeden (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
     });
   }
 
+  // Methoden, beginnend mit "add. . .", fügen Einträge in die entsprechende Tabelle ein
   void addStadt(String name, String plz) async {
     int count = await db
         .rawInsert('INSERT INTO stadt(name, plz) VALUES(?, ?)', [name, plz]);
     print(count);
   }
 
-  void addAttraktionen(String name, String beschreibung, String bild, int idStadt) async {
+  void addAttraktionen(String name, String beschreibung, String link, String bild, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO attraktionen(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
-        [name, beschreibung, bild, idStadt]);
+        'INSERT INTO attraktionen(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
+        [name, beschreibung, link, bild, idStadt]);
     print(count);
   }
 
-  void addSehenswuerdigkeiten(String name, String beschreibung, String bild, int idStadt) async {
+  void addSehenswuerdigkeiten(String name, String beschreibung, String link, String bild, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO sehenswuerdigkeiten(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
-        [name, beschreibung, bild, idStadt]);
+        'INSERT INTO sehenswuerdigkeiten(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
+        [name, beschreibung, link, bild, idStadt]);
     print(count);
   }
 
-  void addRestaurants(String name, String beschreibung, String bild, int idStadt) async {
+  void addRestaurants(String name, String beschreibung, String link, String bild, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO restaurants(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
-        [name, beschreibung, bild, idStadt]);
+        'INSERT INTO restaurants(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
+        [name, beschreibung, link, bild, idStadt]);
     print(count);
   }
 
-  void addEinkaufslaeden(String name, String beschreibung, String bild, int idStadt) async {
+  void addEinkaufslaeden(String name, String beschreibung, String link, String bild, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO einkaufslaeden(name, beschreibung, bild, idStadt) VALUES(?, ?, ?, ?)',
-        [name, beschreibung, bild, idStadt]);
+        'INSERT INTO einkaufslaeden(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
+        [name, beschreibung, link, bild, idStadt]);
     print(count);
   }
 
@@ -73,6 +76,7 @@ class CityDatabase {
     print(list);
   }
 
+  // Methoden, beginnend mit "get. . .", um die Einträge in der entsprechenden Tabelle anzuzeigen
   Future<List<Map>> getStaedte() async {
     List<Map> list = await db.rawQuery('SELECT * FROM stadt');
     return list;

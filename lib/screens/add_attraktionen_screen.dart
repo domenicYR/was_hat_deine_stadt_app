@@ -103,6 +103,17 @@ class _FormularState extends State<Formular> {
 
                   TextFormField(
                     decoration: InputDecoration(
+                      labelText: 'Link zur Attraktion',
+                      border: OutlineInputBorder(),
+                    ),
+                    onSaved: (value) => objektDatenFormular.link = value,
+                    keyboardType: TextInputType.text,
+                  ),
+
+                  SizedBox(height: 20),
+
+                  TextFormField(
+                    decoration: InputDecoration(
                       labelText: 'Bild hinzufügen',
                       border: OutlineInputBorder(),
                     ),
@@ -116,7 +127,13 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addAttraktionen(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
+                      DataModel.cdb.addAttraktionen(
+                          objektDatenFormular.name,
+                          objektDatenFormular.beschreibung,
+                          objektDatenFormular.link,
+                          objektDatenFormular.bild,
+                          resultGlobal[indexGlobal]["id"]);
+                      _showAlertDialog();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -139,10 +156,22 @@ class _FormularState extends State<Formular> {
 
     _formKey.currentState.reset();
   }
+
+  void _showAlertDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Attraktion wurde hinzugefügt!'),
+        );
+      },
+    );
+  }
 }
 
 class DatenFormular {
   String name = "";
   String beschreibung = "";
+  String link = "";
   String bild = "";
 }

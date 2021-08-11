@@ -60,7 +60,7 @@ class _FormularState extends State<Formular> {
                   ),
 
                   Text(
-                    "Attraktionen",
+                    "Sehenswürdigkeiten",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _FormularState extends State<Formular> {
 
                   Padding(
                       padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Text('Füge der Stadt deine Lieblingsattraktionen hinzu.',
+                      child: Text('Füge der Stadt deine Lieblingssehenswürdigkeiten hinzu.',
                           style: TextStyle(
                             fontSize: 14,
                           )
@@ -103,6 +103,17 @@ class _FormularState extends State<Formular> {
 
                   TextFormField(
                     decoration: InputDecoration(
+                      labelText: 'Link zur Sehenswürdigkeit',
+                      border: OutlineInputBorder(),
+                    ),
+                    onSaved: (value) => objektDatenFormular.link = value,
+                    keyboardType: TextInputType.text,
+                  ),
+
+                  SizedBox(height: 20),
+
+                  TextFormField(
+                    decoration: InputDecoration(
                       labelText: 'Bild hinzufügen',
                       border: OutlineInputBorder(),
                     ),
@@ -116,7 +127,8 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addSehenswuerdigkeiten(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
+                      DataModel.cdb.addSehenswuerdigkeiten(objektDatenFormular.name, objektDatenFormular.beschreibung, objektDatenFormular.link, objektDatenFormular.bild, resultGlobal[indexGlobal]["id"]);
+                      _showAlertDialog();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -139,10 +151,22 @@ class _FormularState extends State<Formular> {
 
     _formKey.currentState.reset();
   }
+
+  void _showAlertDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Sehenswürdigkeit wurde hinzugefügt!'),
+        );
+      },
+    );
+  }
 }
 
 class DatenFormular {
   String name = "";
   String beschreibung = "";
+  String link = "";
   String bild = "";
 }
