@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 
 List<Map> resultGlobal;
@@ -37,6 +40,10 @@ class _FormularState extends State<Formular> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DatenFormular objektDatenFormular = DatenFormular();
+
+  File _image;
+
+  final picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +128,41 @@ class _FormularState extends State<Formular> {
                     keyboardType: TextInputType.text,
                   ),
 
+                  SizedBox(height: 20),
+
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        _showPicker(context);
+                      },
+                      child: CircleAvatar(
+                        radius: 55,
+                        backgroundColor: Color(0xffFDCF09),
+                        child: _image != null
+                            ? ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.file(
+                            _image,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        )
+                            : Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(50)),
+                          width: 100,
+                          height: 100,
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
                   SizedBox(height: 30),
 
                   ElevatedButton(
@@ -162,6 +204,58 @@ class _FormularState extends State<Formular> {
       },
     );
   }
+
+  Future<void> _imgFromCamera() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+
+    if(pickedImage != null){
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  Future<void> _imgFromGallery() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+    if(pickedImage != null){
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+    );
+  }
+
 }
 
 class DatenFormular {

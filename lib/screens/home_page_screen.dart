@@ -1,116 +1,99 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-enum ImageSourceType { gallery, camera }
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
-  void _handleURLButtonPress(BuildContext context, var type) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ImageFromGalleryEx(type)));
+class _HomePageState extends State<HomePage> {
+  File _image;
+
+  final picker = ImagePicker();
+  Future<void> _imgFromCamera() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+
+    if(pickedImage != null){
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  Future<void> _imgFromGallery() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+    if(pickedImage != null){
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Image Picker Example"),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              MaterialButton(
-                color: Colors.blue,
-                child: Text(
-                  "Pick Image from Gallery",
-                  style: TextStyle(
-                      color: Colors.white70, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {
-                  _handleURLButtonPress(context, ImageSourceType.gallery);
-                },
-              ),
-              MaterialButton(
-                color: Colors.blue,
-                child: Text(
-                  "Pick Image from Camera",
-                  style: TextStyle(
-                      color: Colors.white70, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {
-                  _handleURLButtonPress(context, ImageSourceType.camera);
-                },
-              ),
-            ],
-          ),
-        ));
-  }
-}
 
-class ImageFromGalleryEx extends StatefulWidget {
-  final type;
-  ImageFromGalleryEx(this.type);
-
-  @override
-  ImageFromGalleryExState createState() => ImageFromGalleryExState(this.type);
-}
-
-class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
-  var _image;
-  var imagePicker;
-  var type;
-
-  ImageFromGalleryExState(this.type);
-
-  @override
-  void initState() {
-    super.initState();
-    imagePicker = new ImagePicker();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(type == ImageSourceType.camera
-              ? "Image from Camera"
-              : "Image from Gallery")),
       body: Column(
         children: <Widget>[
-          SizedBox(
-            height: 52,
-          ),
+
           Center(
             child: GestureDetector(
-              onTap: () async {
-                var source = type == ImageSourceType.camera
-                    ? ImageSource.camera
-                    : ImageSource.gallery;
-                XFile image = await imagePicker.pickImage(
-                    source: source, imageQuality: 50, preferredCameraDevice: CameraDevice.front);
-                setState(() {
-                  _image = File(image.path);
-                });
+              onTap: () {
+                _showPicker(context);
               },
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                    color: Colors.red[200]),
+              child: CircleAvatar(
+                radius: 55,
+                backgroundColor: Color(0xffFDCF09),
                 child: _image != null
-                    ? Image.file(
-                  _image,
-                  width: 200.0,
-                  height: 200.0,
-                  fit: BoxFit.fitHeight,
+                    ? ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.file(
+                    _image,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.fitHeight,
+                  ),
                 )
                     : Container(
                   decoration: BoxDecoration(
-                      color: Colors.red[200]),
-                  width: 200,
-                  height: 200,
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(50)),
+                  width: 100,
+                  height: 100,
                   child: Icon(
                     Icons.camera_alt,
                     color: Colors.grey[800],
