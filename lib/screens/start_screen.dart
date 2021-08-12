@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/pseudo_start_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
 
 class StartScreen extends StatelessWidget {
+
+
+
   @override
+
   Widget build(BuildContext context) {
     return MaterialApp(
+
+
+
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
           title: Text('Was hat deine Stadt'),
           centerTitle: true,
+
+
         ),
+
         body: SingleChildScrollView(
           child: Column(children: [
 
@@ -155,7 +167,7 @@ class StartScreen extends StatelessWidget {
                                           MaterialStateProperty.all<Color>(
                                               Colors.deepOrange),
                                     ),
-                                    child: Text('Zu den Städten'),
+                                    child: Text('Jetzt hinzufügen'),
                                   ),
                                 ),
                               ),
@@ -170,7 +182,35 @@ class StartScreen extends StatelessWidget {
             ),
           ]),
         ),
+
+
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0, // this will be set when a new tab is tapped
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text('Home'),
+
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.mail),
+              title: new Text('Messages'),
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                title: Text('Profile')
+            )
+          ],
+        ),
+
+
+
+
       ),
     );
   }
+
+
+
 }
+

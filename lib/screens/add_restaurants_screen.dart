@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
+import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
+
+import 'add_city_screen.dart';
+import 'city_list_screen.dart';
 
 List<Map> resultGlobal;
 int indexGlobal;
@@ -37,6 +41,66 @@ class Formular extends StatefulWidget {
 }
 
 class _FormularState extends State<Formular> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Städte',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Settings',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch(index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  StartScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  CityListScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  AddCityScreen()),
+        );
+        break;
+      default:
+        print('');
+    }
+  }
+
+
+
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DatenFormular objektDatenFormular = DatenFormular();
@@ -183,6 +247,34 @@ class _FormularState extends State<Formular> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+
+            backgroundColor: Colors.deepOrange,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.visibility),
+            label: 'Stadt anzeigen',
+            backgroundColor: Colors.deepOrange,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.upload_outlined),
+            label: 'Stadt hinzufügen',
+            backgroundColor: Colors.deepOrange,
+          ),
+
+        ],
+        currentIndex: _selectedIndex,
+        backgroundColor: Colors.deepOrange,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
+        onTap: _onItemTapped,
+      ),
     );
   }
 
@@ -251,6 +343,7 @@ class _FormularState extends State<Formular> {
                 ],
               ),
             ),
+
           );
         }
     );
