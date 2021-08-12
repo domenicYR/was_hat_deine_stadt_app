@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
 List<Map> resultGlobal;
 int indexGlobal;
@@ -36,6 +39,58 @@ class Formular extends StatefulWidget {
 }
 
 class _FormularState extends State<Formular> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch(index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  StartScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  CityListScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  AddCityScreen()),
+        );
+        break;
+      default:
+        print('');
+    }
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DatenFormular objektDatenFormular = DatenFormular();
@@ -186,6 +241,26 @@ class _FormularState extends State<Formular> {
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
