@@ -42,23 +42,18 @@ class Formular extends StatefulWidget {
 
 class _FormularState extends State<Formular> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
       style: optionStyle,
     ),
     Text(
-      'Index 1: Städte',
+      'Index 1: Business',
       style: optionStyle,
     ),
     Text(
       'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
       style: optionStyle,
     ),
   ];
@@ -97,9 +92,6 @@ class _FormularState extends State<Formular> {
         print('');
     }
   }
-
-
-
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -252,27 +244,22 @@ class _FormularState extends State<Formular> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-
-            backgroundColor: Colors.deepOrange,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.visibility),
-            label: 'Stadt anzeigen',
-            backgroundColor: Colors.deepOrange,
+            label: 'Städte',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.upload_outlined),
             label: 'Stadt hinzufügen',
-            backgroundColor: Colors.deepOrange,
           ),
-
         ],
         currentIndex: _selectedIndex,
         backgroundColor: Colors.deepOrange,
-        unselectedItemColor: Colors.white,
         selectedItemColor: Colors.white,
-        unselectedFontSize: 12,
+        unselectedItemColor: Colors.white,
         selectedFontSize: 12,
+        unselectedFontSize: 12,
         onTap: _onItemTapped,
       ),
     );

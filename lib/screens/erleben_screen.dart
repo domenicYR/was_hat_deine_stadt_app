@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_attraktionen_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_einkaufslaeden_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_restaurants_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_sehenswuerdigkeiten_screen.dart';
-import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_einkaufslaeden_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_restaurants_screen.dart';
@@ -18,7 +16,6 @@ class ErlebenScreen extends StatelessWidget {
   ErlebenScreen(List<Map> result, int index) {
     this.result = result;
     this.index = index;
-    //print(result[index]["id"]);
   }
 
   @override
