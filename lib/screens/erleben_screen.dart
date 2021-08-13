@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_attraktionen_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_einkaufslaeden_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_restaurants_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/add_sehenswuerdigkeiten_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_attraktionen_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_einkaufslaeden_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_restaurants_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/show_sehenswuerdigkeiten_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
-class ErlebenScreen extends StatelessWidget {
+class ErlebenScreen extends StatefulWidget {
   List<Map> result;
   int index;
 
@@ -19,11 +22,68 @@ class ErlebenScreen extends StatelessWidget {
   }
 
   @override
+  _ErlebenScreenState createState() => _ErlebenScreenState();
+}
+
+class _ErlebenScreenState extends State<ErlebenScreen> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch(index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  StartScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  CityListScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  AddCityScreen()),
+        );
+        break;
+      default:
+        print('');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(result[index]["name"]),
+        title: Text(widget.result[widget.index]["name"]),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -75,7 +135,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddSehenswuerdigkeitenScreen(result, index)),
+                                                AddSehenswuerdigkeitenScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -99,7 +159,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ShowSehenswuerdigkeitenScreen(result, index)),
+                                                ShowSehenswuerdigkeitenScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -169,7 +229,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddRestaurantsScreen(result, index)),
+                                                AddRestaurantsScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -194,7 +254,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ShowRestaurantsScreen(result, index)),
+                                                ShowRestaurantsScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -264,7 +324,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddAttraktionenScreen(result, index)),
+                                                AddAttraktionenScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -289,7 +349,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ShowAttraktionenScreen(result, index)),
+                                                ShowAttraktionenScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -359,7 +419,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AddEinkaufslaedenScreen(result, index)),
+                                                AddEinkaufslaedenScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -384,7 +444,7 @@ class ErlebenScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ShowEinkaufslaedenScreen(result, index)),
+                                                ShowEinkaufslaedenScreen(widget.result, widget.index)),
                                       );
                                     },
                                     style: ButtonStyle(
@@ -411,6 +471,29 @@ class ErlebenScreen extends StatelessWidget {
 
           ],
         )
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.visibility),
+            label: 'Städte',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.upload_outlined),
+            label: 'Stadt hinzufügen',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        backgroundColor: Colors.deepOrange,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        onTap: _onItemTapped,
       ),
     );
   }

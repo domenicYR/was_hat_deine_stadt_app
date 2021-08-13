@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:was_hat_deine_stadt_app/model/data_model.dart';
+import 'package:was_hat_deine_stadt_app/screens/add_city_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
+import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
-class ShowEinkaufslaedenScreen extends StatelessWidget {
+class ShowEinkaufslaedenScreen extends StatefulWidget {
   List<Map> result;
   int index;
 
@@ -14,6 +17,63 @@ class ShowEinkaufslaedenScreen extends StatelessWidget {
   }
 
   @override
+  _ShowEinkaufslaedenScreenState createState() => _ShowEinkaufslaedenScreenState();
+}
+
+class _ShowEinkaufslaedenScreenState extends State<ShowEinkaufslaedenScreen> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch(index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  StartScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  CityListScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  AddCityScreen()),
+        );
+        break;
+      default:
+        print('');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +82,7 @@ class ShowEinkaufslaedenScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: DataModel.cdb.getEinkaufslaeden(result[index]["id"]),
+        future: DataModel.cdb.getEinkaufslaeden(widget.result[widget.index]["id"]),
         // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<List<Map>> snapshot) {
           // Fall 1: keine Daten geladen
@@ -140,6 +200,29 @@ class ShowEinkaufslaedenScreen extends StatelessWidget {
                 });
           }
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.visibility),
+            label: 'Städte',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.upload_outlined),
+            label: 'Stadt hinzufügen',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        backgroundColor: Colors.deepOrange,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        onTap: _onItemTapped,
       ),
     );
   }
