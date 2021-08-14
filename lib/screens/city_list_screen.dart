@@ -18,11 +18,11 @@ class _CityListScreenState extends State<CityListScreen> {
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Index 1: Städte',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: Stadt hinzufügen',
       style: optionStyle,
     ),
   ];
