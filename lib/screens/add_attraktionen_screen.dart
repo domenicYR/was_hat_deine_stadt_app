@@ -9,6 +9,7 @@ import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
 List<Map> resultGlobal;
 int indexGlobal;
+int validierung = 0;
 
 class AddAttraktionenScreen extends StatelessWidget {
   // Konstruktor
@@ -147,6 +148,12 @@ class _FormularState extends State<Formular> {
                     ),
                     onSaved: (value) => objektDatenFormular.name = value,
                     keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Eingabefeld darf nicht leer sein!';
+                      }
+                      return null;
+                    },
                   ),
 
                   SizedBox(height: 20),
@@ -158,6 +165,12 @@ class _FormularState extends State<Formular> {
                     ),
                     onSaved: (value) => objektDatenFormular.beschreibung = value,
                     keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Eingabefeld darf nicht leer sein!';
+                      }
+                      return null;
+                    },
                   ),
 
                   SizedBox(height: 20),
@@ -169,17 +182,12 @@ class _FormularState extends State<Formular> {
                     ),
                     onSaved: (value) => objektDatenFormular.link = value,
                     keyboardType: TextInputType.text,
-                  ),
-
-                  SizedBox(height: 20),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Bild hinzufügen',
-                      border: OutlineInputBorder(),
-                    ),
-                    onSaved: (value) => objektDatenFormular.bild = value,
-                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Eingabefeld darf nicht leer sein!';
+                      }
+                      return null;
+                    },
                   ),
 
                   SizedBox(height: 20),
@@ -223,13 +231,17 @@ class _FormularState extends State<Formular> {
                     child: Text("Jetzt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addAttraktionen(
-                          objektDatenFormular.name,
-                          objektDatenFormular.beschreibung,
-                          objektDatenFormular.link,
-                          objektDatenFormular.bild,
-                          resultGlobal[indexGlobal]["id"]);
-                      _showAlertDialog();
+                      if (validierung == 0) {
+                        print("ungültig");
+                      } else {
+                        DataModel.cdb.addAttraktionen(
+                            objektDatenFormular.name,
+                            objektDatenFormular.beschreibung,
+                            objektDatenFormular.link,
+                            resultGlobal[indexGlobal]["id"]);
+                        _showAlertDialog();
+                        validierung = 0;
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrange),
@@ -271,9 +283,13 @@ class _FormularState extends State<Formular> {
   void _handleSubmitButton() {
     final form = _formKey.currentState;
 
-    form.save();
-
-    _formKey.currentState.reset();
+    if (!form.validate()) {
+      print("Eingabe ungültig!");
+    } else {
+      form.save();
+      _formKey.currentState.reset();
+      validierung = 1;
+    }
   }
 
   void _showAlertDialog(){
@@ -346,4 +362,3 @@ class DatenFormular {
   String link = "";
   String bild = "";
 }
-// Hallo

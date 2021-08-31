@@ -24,50 +24,50 @@ class CityDatabase {
         onCreate: (Database db, int version) async {
       // When creating the db, create the table
       await db.execute(
-          'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT, plz TEXT)');
+          'CREATE TABLE stadt (id INTEGER PRIMARY KEY, name TEXT)');
       await db.execute(
-          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE attraktionen (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
-          'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE sehenswuerdigkeiten (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
-          'CREATE TABLE restaurants (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE restaurants (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
       await db.execute(
-          'CREATE TABLE einkaufslaeden (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, bild TEXT, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
+          'CREATE TABLE einkaufslaeden (id INTEGER PRIMARY KEY, name TEXT, beschreibung TEXT, link Text, idStadt INTEGER, FOREIGN KEY(idStadt) REFERENCES stadt(id))');
     });
   }
 
   // Methoden, beginnend mit "add. . .", fügen Einträge in die entsprechende Tabelle ein
-  void addStadt(String name, String plz) async {
+  void addStadt(String name) async {
     int count = await db
-        .rawInsert('INSERT INTO stadt(name, plz) VALUES(?, ?)', [name, plz]);
+        .rawInsert('INSERT INTO stadt(name) VALUES(?)', [name]);
     print(count);
   }
 
-  void addAttraktionen(String name, String beschreibung, String link, String bild, int idStadt) async {
+  void addAttraktionen(String name, String beschreibung, String link, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO attraktionen(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
-        [name, beschreibung, link, bild, idStadt]);
+        'INSERT INTO attraktionen(name, beschreibung, link, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, link, idStadt]);
     print(count);
   }
 
-  void addSehenswuerdigkeiten(String name, String beschreibung, String link, String bild, int idStadt) async {
+  void addSehenswuerdigkeiten(String name, String beschreibung, String link, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO sehenswuerdigkeiten(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
-        [name, beschreibung, link, bild, idStadt]);
+        'INSERT INTO sehenswuerdigkeiten(name, beschreibung, link, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, link, idStadt]);
     print(count);
   }
 
-  void addRestaurants(String name, String beschreibung, String link, String bild, int idStadt) async {
+  void addRestaurants(String name, String beschreibung, String link, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO restaurants(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
-        [name, beschreibung, link, bild, idStadt]);
+        'INSERT INTO restaurants(name, beschreibung, link, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, link, idStadt]);
     print(count);
   }
 
-  void addEinkaufslaeden(String name, String beschreibung, String link, String bild, int idStadt) async {
+  void addEinkaufslaeden(String name, String beschreibung, String link, int idStadt) async {
     int count = await db.rawInsert(
-        'INSERT INTO einkaufslaeden(name, beschreibung, link, bild, idStadt) VALUES(?, ?, ?, ?, ?)',
-        [name, beschreibung, link, bild, idStadt]);
+        'INSERT INTO einkaufslaeden(name, beschreibung, link, idStadt) VALUES(?, ?, ?, ?)',
+        [name, beschreibung, link, idStadt]);
     print(count);
   }
 

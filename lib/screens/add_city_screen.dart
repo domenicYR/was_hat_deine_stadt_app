@@ -3,6 +3,8 @@ import 'package:was_hat_deine_stadt_app/model/data_model.dart';
 import 'package:was_hat_deine_stadt_app/screens/city_list_screen.dart';
 import 'package:was_hat_deine_stadt_app/screens/start_screen.dart';
 
+int validierung = 0;
+
 class AddCityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -127,6 +129,12 @@ class _FormularState extends State<Formular> {
                     ),
                     onSaved: (value) => objektDatenFormular.name = value,
                     keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Eingabefeld darf nicht leer sein!';
+                      }
+                      return null;
+                    },
                   ),
 
                   SizedBox(height: 30),
@@ -135,8 +143,13 @@ class _FormularState extends State<Formular> {
                     child: Text("Stadt hinzufügen"),
                     onPressed: () {
                       _handleSubmitButton();
-                      DataModel.cdb.addStadt(objektDatenFormular.name, "52100");
-                      _showAlertDialog();
+                      if (validierung == 0) {
+                        print("ungültig");
+                      } else {
+                        DataModel.cdb.addStadt(objektDatenFormular.name);
+                        _showAlertDialog();
+                        validierung = 0;
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor:
@@ -179,9 +192,13 @@ class _FormularState extends State<Formular> {
   void _handleSubmitButton() {
     final form = _formKey.currentState;
 
-    form.save();
-
-    _formKey.currentState.reset();
+    if (!form.validate()) {
+      print("Eingabe ungültig!");
+    } else {
+      form.save();
+      _formKey.currentState.reset();
+      validierung = 1;
+    }
   }
 
   void _showAlertDialog(){
