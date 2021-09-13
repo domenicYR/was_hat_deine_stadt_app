@@ -21,6 +21,7 @@ class ShowSehenswuerdigkeitenScreen extends StatefulWidget {
 }
 
 class _ShowSehenswuerdigkeitenScreenState extends State<ShowSehenswuerdigkeitenScreen> {
+  // Für die Navigationsleiste im Screen, unten
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -201,6 +202,8 @@ class _ShowSehenswuerdigkeitenScreenState extends State<ShowSehenswuerdigkeitenS
           }
         },
       ),
+
+      // Für die Navigationsleiste im Screen, unten
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

@@ -10,6 +10,7 @@ class CityListScreen extends StatefulWidget {
 }
 
 class _CityListScreenState extends State<CityListScreen> {
+  // Für die Navigationsleiste im Screen, unten
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -90,12 +91,10 @@ class _CityListScreenState extends State<CityListScreen> {
                 itemCount: result.length,
                 itemBuilder: (context, index) {
 
-
                   // body
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 2.0),
                     child: Card(
-
 
                       // Button
                       child: ElevatedButton(
@@ -115,7 +114,6 @@ class _CityListScreenState extends State<CityListScreen> {
                           height: 80,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-
 
                             // Text Center
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -138,6 +136,8 @@ class _CityListScreenState extends State<CityListScreen> {
           }
         },
       ),
+
+      // Für die Navigationsleiste im Screen, unten
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

@@ -41,6 +41,7 @@ class Formular extends StatefulWidget {
 }
 
 class _FormularState extends State<Formular> {
+  // Für die Navigationsleiste im Screen, unten
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -193,6 +194,7 @@ class _FormularState extends State<Formular> {
 
                   SizedBox(height: 20),
 
+                  // Zur Visualisierung, dass ein Bild eingefügt werden kann
                   Center(
                     child: GestureDetector(
                       onTap: () {
@@ -255,6 +257,8 @@ class _FormularState extends State<Formular> {
           ),
         ),
       ),
+
+      // Für die Navigationsleiste im Screen, unten
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -281,6 +285,7 @@ class _FormularState extends State<Formular> {
     );
   }
 
+  // Zur Überprüfung, ob Eingabefelder leer sind und falls nein, dann abspeichern des Inhalts in Tabelle
   void _handleSubmitButton() {
     final form = _formKey.currentState;
 
@@ -293,6 +298,7 @@ class _FormularState extends State<Formular> {
     }
   }
 
+  // Zur Anzeige des Pop-up-Fensters
   void _showAlertDialog(){
     showDialog(
       context: context,
@@ -304,6 +310,7 @@ class _FormularState extends State<Formular> {
     );
   }
 
+  // Bild von der Kamera einfügen
   Future<void> _imgFromCamera() async {
     final pickedImage = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
 
@@ -314,6 +321,7 @@ class _FormularState extends State<Formular> {
     }
   }
 
+  // Bild aus der Galerie einfügen
   Future<void> _imgFromGallery() async {
     final pickedImage = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
@@ -324,6 +332,7 @@ class _FormularState extends State<Formular> {
     }
   }
 
+  // Zur Anzeige, ob Bild von "Camera" oder aus "Photo Library" eingefügt werden soll
   void _showPicker(context) {
     showModalBottomSheet(
         context: context,
